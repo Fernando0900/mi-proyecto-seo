@@ -1,5 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+// Componente cargado con Lazy Loading
+const DynamicComponent = dynamic(() => import("../components/LargeComponent"), {
+  ssr: false, // evita renderizado en el servidor
+});
 
 export default function Home() {
   return (
@@ -25,6 +31,9 @@ export default function Home() {
         alt="Ejemplo de imagen optimizada"
         priority
       />
+
+      {/* Componente cargado dinámicamente */}
+      <DynamicComponent />
     </>
   );
 }
